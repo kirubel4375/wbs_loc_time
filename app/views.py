@@ -93,6 +93,8 @@ class EstimateFromGroqAPIView(APIView):
         result = response.choices[0].message.content.strip()
         if result.startswith("```"):
             result = result.replace("```", "").strip()
+        if result.startswith("json"):
+            result = result.replace("json", "").strip()
 
         try:
             parsed = json.loads(result)
